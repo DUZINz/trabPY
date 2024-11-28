@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entrega Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Dashboard de Análise de Entregas</h1>
+    <form action="/analisar" method="post">
+        <button type="submit">Analisar Dados</button>
+    </form>
+    
+    <form action="/filtrar" method="post">
+        <input type="text" name="localidade" placeholder="Localidade">
+        <input type="number" name="tamanho" placeholder="Tamanho">
+        <button type="submit">Filtrar Dados</button>
+    </form>
+    
+    <form action="/prever" method="post">
+        <input type="number" name="tamanho" placeholder="Tamanho">
+        <input type="text" name="localidade" placeholder="Localidade">
+        <button type="submit">Prever Preço</button>
+    </form>
+    
+    <form action="/visualizacao_avancada" method="post">
+        <button type="submit">Visualizações Avançadas</button>
+    </form>
+    
+    <form action="/exportar" method="post">
+        <button type="submit">Exportar Dados</button>
+    </form>
+    
+    {% if mse %}
+    <h2>MSE: {{ mse }}</h2>
+    <img src="{{ image }}" alt="Scatter Plot">
+    {% endif %}
+    
+    {% if image_filtrado %}
+    <img src="{{ image_filtrado }}" alt="Scatter Plot Filtrado">
+    {% endif %}
+    
+    {% if previsao %}
+    <h2>Preço Previsto: {{ previsao }}</h2>
+    {% endif %}
+    
+    {% if barplot %}
+    <img src="{{ barplot }}" alt="Bar Plot">
+    {% endif %}
+    
+    {% if piechart %}
+    <img src="{{ piechart }}" alt="Pie Chart">
+    {% endif %}
+    
+    {% if message %}
+    <h2>{{ message }}</h2>
+    {% endif %}
+</body>
+</html>
